@@ -27,10 +27,13 @@
     <meta property="twitter:image" content="https://your-domain.com/mortgage-calculator-preview.jpg">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/web-app-manifest-192x192.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="shortcut icon" href="favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/web-app-manifest-192x192.png">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles.css" />
@@ -78,7 +81,9 @@
               <label for="loanAmount" class="block text-sm font-medium text-gray-700">Loan Amount (₱)</label>
               <div class="mt-1 relative rounded-md shadow-sm">
                 <input
-                  type="number"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9,]*"
                   id="loanAmount"
                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                   placeholder="e.g., 300000"
@@ -124,7 +129,9 @@
               <label for="extraPayment" class="block text-sm font-medium text-gray-700">Extra Monthly Payment (Optional, ₱)</label>
               <div class="mt-1 relative rounded-md shadow-sm">
                 <input
-                  type="number"
+                  type="text"
+                  inputmode="numeric"
+                  pattern="[0-9,]*"
                   id="extraPayment"
                   step="0.01"
                   class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"

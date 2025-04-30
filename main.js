@@ -44,6 +44,36 @@ window.addEventListener("DOMContentLoaded", () => {
     return result || "0 months";
   };
 
+  // Simple debounce function
+  const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
+
+  // Format number with commas
+  const formatNumber = (input) => {
+    // Get the current value without commas
+    const value = input.value.replace(/,/g, '');
+    
+    // Only allow numbers
+    if (!/^\d*$/.test(value)) {
+      input.value = value.replace(/[^\d]/g, '');
+      return;
+    }
+    
+    // Format with commas
+    if (value) {
+      input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+  };
+
   // --- Input Validation ---
   function validateRequiredInput(input, errorEl, message) {
     // Specific validation for required fields (Loan Amount, Interest Rate, Loan Term)
@@ -307,11 +337,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
     // Get validated values
-    const principal = parseFloat(loanAmountInput.value);
+    const principal = parseFloat(loanAmountInput.value.replace(/,/g, ''));
     const annualRate = parseFloat(interestRateInput.value);
     const termYears = parseInt(loanTermInput.value, 10);
     // Get extra payment value, default to 0 if empty or not a number
-    const extraPayment = parseFloat(extraPaymentInput.value) || 0;
+    const extraPayment = parseFloat(extraPaymentInput.value.replace(/,/g, '')) || 0;
 
     // Perform calculation
     try {
@@ -343,13 +373,19 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   // Add real-time validation feedback
-  loanAmountInput.addEventListener("input", () =>
+  loanAmountInput.addEventListener("input", () => {
+    formatNumber(loanAmountInput);
     validateRequiredInput(
       loanAmountInput,
       loanAmountError,
       "Please enter a valid loan amount (> 0).",
-    ),
-  );
+    );
+  });
+  
+  // Add debounced formatting
+  const debouncedFormatLoanAmount = debounce(() => formatNumber(loanAmountInput), 300);
+  loanAmountInput.addEventListener("input", debouncedFormatLoanAmount);
+
   interestRateInput.addEventListener("input", () => {
     // Combined validation for interest rate
     const isValidFormat = validateRequiredInput(
@@ -363,18 +399,25 @@ window.addEventListener("DOMContentLoaded", () => {
       interestRateInput.classList.add("border-red-500");
     }
   });
+
   loanTermInput.addEventListener("input", () =>
     validateRequiredInput(
       loanTermInput,
       loanTermError,
       "Please enter a valid loan term (> 0).",
-    ),
+    )
   );
-  extraPaymentInput.addEventListener("input", () =>
+
+  extraPaymentInput.addEventListener("input", () => {
+    formatNumber(extraPaymentInput);
     validateOptionalPositiveInput(
       extraPaymentInput,
       extraPaymentError,
       "Extra payment cannot be negative.",
-    ),
-  );
+    );
+  });
+  
+  // Add debounced formatting
+  const debouncedFormatExtraPayment = debounce(() => formatNumber(extraPaymentInput), 300);
+  extraPaymentInput.addEventListener("input", debouncedFormatExtraPayment);
 });
