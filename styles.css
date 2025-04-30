@@ -1,0 +1,9 @@
+/* Custom styles for better appearance */
+body {
+  font-family: "Inter", sans-serif; /* Use Inter font */
+}
+
+/* Responsive table container */
+.table-container {
+  @apply max-h-96 overflow-y-auto mt-4 rounded-lg border border-gray-200; /* Scrollable container */
+}
