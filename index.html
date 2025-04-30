@@ -3,13 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mortgage Calculator with Extra Payments</title>
+    <title>Mortgage Loan Calculator - Free Online Payment & Amortization Calculator</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Mortgage Loan Calculator - Free Online Payment & Amortization Calculator">
+    <meta name="description" content="Calculate your monthly mortgage payments, view amortization schedules, and see how extra payments can save you money. Free online mortgage calculator with detailed breakdown.">
+    <meta name="keywords" content="mortgage calculator, loan calculator, amortization calculator, mortgage payment calculator, extra payment calculator, home loan calculator">
+    <meta name="author" content="Mortgage Calculator Tool">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Mortgage Loan Calculator - Free Online Payment & Amortization Calculator">
+    <meta property="og:description" content="Calculate your monthly mortgage payments, view amortization schedules, and see how extra payments can save you money. Free online mortgage calculator with detailed breakdown.">
+    <meta property="og:image" content="https://your-domain.com/mortgage-calculator-preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Mortgage Loan Calculator - Free Online Payment & Amortization Calculator">
+    <meta property="twitter:description" content="Calculate your monthly mortgage payments, view amortization schedules, and see how extra payments can save you money. Free online mortgage calculator with detailed breakdown.">
+    <meta property="twitter:image" content="https://your-domain.com/mortgage-calculator-preview.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon/web-app-manifest-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Mortgage Loan Calculator",
+      "description": "Free online mortgage calculator with amortization schedule and extra payment calculations",
+      "url": "https://your-domain.com",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "PHP"
+      },
+      "featureList": [
+        "Monthly payment calculation",
+        "Amortization schedule",
+        "Extra payment analysis",
+        "Interest savings calculation",
+        "Loan term comparison"
+      ]
+    }
+    </script>
   </head>
   <body class="bg-gray-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl mx-auto">
@@ -18,8 +71,8 @@
         <p class="mt-2 text-sm text-gray-600">Calculate your monthly payments and see how extra payments can save you money</p>
       </div>
 
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <form id="mortgage-form" class="p-6 sm:p-8 space-y-6">
+      <main class="bg-white shadow-xl rounded-lg overflow-hidden">
+        <form id="mortgage-form" class="p-6 sm:p-8 space-y-6" role="form" aria-label="Mortgage Calculator Form">
           <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <div>
               <label for="loanAmount" class="block text-sm font-medium text-gray-700">Loan Amount (₱)</label>
@@ -90,7 +143,7 @@
           </div>
         </form>
 
-        <div id="results" class="hidden bg-gray-50 border-t border-gray-200">
+        <section id="results" class="hidden bg-gray-50 border-t border-gray-200" aria-live="polite">
           <div class="p-6 sm:p-8">
             <h2 class="text-xl font-semibold text-gray-900 mb-6">Calculation Results</h2>
             
@@ -177,10 +230,45 @@
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
-        <div id="generalError" class="hidden p-4 bg-red-50 text-red-600 text-center font-medium"></div>
-      </div>
+        <div id="generalError" class="hidden p-4 bg-red-50 text-red-600 text-center font-medium" role="alert"></div>
+      </main>
+
+      <section class="mt-12 prose prose-indigo max-w-none">
+        <h2 class="text-2xl font-semibold text-gray-900 mb-4">About Our Mortgage Calculator</h2>
+        <p class="text-gray-600 mb-4">
+          Our free mortgage calculator helps you estimate your monthly mortgage payments and understand the complete cost of your loan. 
+          Input your loan amount, interest rate, and term to see a detailed breakdown of your payments and potential savings with extra payments.
+        </p>
+        
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">Key Features:</h3>
+        <ul class="list-disc pl-5 text-gray-600 mb-4">
+          <li>Calculate monthly mortgage payments</li>
+          <li>View detailed amortization schedule</li>
+          <li>See the impact of extra payments</li>
+          <li>Calculate total interest savings</li>
+          <li>Compare different loan scenarios</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">How to Use:</h3>
+        <ol class="list-decimal pl-5 text-gray-600 mb-4">
+          <li>Enter your loan amount</li>
+          <li>Input the annual interest rate</li>
+          <li>Specify the loan term in years</li>
+          <li>Optionally add extra monthly payments</li>
+          <li>Click "Calculate" to see your results</li>
+        </ol>
+
+        <p class="text-gray-600 mb-4">
+          Understanding your mortgage payments is crucial for making informed decisions about your home purchase. 
+          Our calculator provides accurate calculations and helps you visualize how extra payments can reduce your loan term and save you money in interest.
+        </p>
+      </section>
+
+      <footer class="mt-12 text-center text-sm text-gray-500">
+        <p>© 2024 Mortgage Calculator Tool. All calculations are estimates and results may vary.</p>
+      </footer>
     </div>
 
     <script src="./main.js"></script>
